@@ -15,13 +15,18 @@ import surface3d.function.visitor.FunctionVisitor;
 
 public class Function {
 	
-	public Function(List<String> vars, Expression exp) {
+	public Function(String name, List<String> vars, Expression exp) {
+		this.name = name;
 		this.vars = vars;
 		this.exp = exp;
 	}
 
 	public void accept(FunctionVisitor vis) {
 		vis.visit(this);
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 	
 	public List<String> getVariables() {
@@ -32,6 +37,7 @@ public class Function {
 		return exp;
 	}
 	
+	private String name = null;
 	private List<String> vars = null;
 	private Expression exp = null;
 
