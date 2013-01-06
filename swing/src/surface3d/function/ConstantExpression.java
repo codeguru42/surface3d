@@ -12,8 +12,18 @@ import surface3d.function.visitor.FunctionVisitor;
 
 public class ConstantExpression {
 	
+	public ConstantExpression(double value) {
+		this.value = value;
+	}
+	
 	public void accept(FunctionVisitor vis) {
 		vis.visit(this);
 	}
+	
+	public double getValue() {
+		return this.value;
+	}
+	
+	private double value = 0.0;
 
 }

@@ -12,9 +12,18 @@ import surface3d.function.visitor.FunctionVisitor;
 
 public class VariableExpression {
 	
+	public VariableExpression(String name) {
+		this.name = name;
+	}
+	
 	public void accept(FunctionVisitor vis) {
 		vis.visit(this);
 	}
 
+	public String getName() {
+		return this.name;
+	}
+	
+	private String name = null;
 
 }
