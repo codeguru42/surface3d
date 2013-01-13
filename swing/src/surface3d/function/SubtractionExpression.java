@@ -5,20 +5,18 @@
  * To Public License, Version 2, as published by Sam Hocevar. See
  * http://sam.zoy.org/wtfpl/COPYING for more details.
  */
-
 package surface3d.function;
 
 import surface3d.function.visitor.FunctionVisitor;
 
 public class SubtractionExpression extends BinaryExpression {
 
-	public SubtractionExpression(Expression lhs, Expression rhs) {
-		super(lhs, rhs);
-	}
+    public SubtractionExpression(Expression lhs, Expression rhs) {
+        super(lhs, rhs);
+    }
 
-	
-	public void accept(FunctionVisitor vis) {
-		vis.visit(this);
-	}
-
+    @Override
+    public void accept(FunctionVisitor vis) {
+        vis.visit(this);
+    }
 }

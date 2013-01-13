@@ -5,18 +5,16 @@
  * To Public License, Version 2, as published by Sam Hocevar. See
  * http://sam.zoy.org/wtfpl/COPYING for more details.
  */
-
 package surface3d.function;
 
 public abstract class UnaryExpression extends Expression {
-	
-	public UnaryExpression(Expression operand) {
-		this.operand = operand;
-	}
-	
-	public Expression getOperand() {
-		return this.operand;
-	}
-	
-	private Expression operand = null;
+
+    public UnaryExpression(Expression operand) {
+        this.operand = operand;
+    }
+
+    public Expression getOperand() {
+        return this.operand;
+    }
+    private Expression operand = null;
 }

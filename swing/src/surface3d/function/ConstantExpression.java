@@ -5,25 +5,23 @@
  * To Public License, Version 2, as published by Sam Hocevar. See
  * http://sam.zoy.org/wtfpl/COPYING for more details.
  */
-
 package surface3d.function;
 
 import surface3d.function.visitor.FunctionVisitor;
 
-public class ConstantExpression {
-	
-	public ConstantExpression(double value) {
-		this.value = value;
-	}
-	
-	public void accept(FunctionVisitor vis) {
-		vis.visit(this);
-	}
-	
-	public double getValue() {
-		return this.value;
-	}
-	
-	private double value = 0.0;
+public class ConstantExpression extends Expression {
 
+    public ConstantExpression(double value) {
+        this.value = value;
+    }
+
+    @Override
+    public void accept(FunctionVisitor vis) {
+        vis.visit(this);
+    }
+
+    public double getValue() {
+        return this.value;
+    }
+    private double value = 0.0;
 }

@@ -5,25 +5,23 @@
  * To Public License, Version 2, as published by Sam Hocevar. See
  * http://sam.zoy.org/wtfpl/COPYING for more details.
  */
-
 package surface3d.function;
 
 import surface3d.function.visitor.FunctionVisitor;
 
-public class VariableExpression {
-	
-	public VariableExpression(String name) {
-		this.name = name;
-	}
-	
-	public void accept(FunctionVisitor vis) {
-		vis.visit(this);
-	}
+public class VariableExpression extends Expression {
 
-	public String getName() {
-		return this.name;
-	}
-	
-	private String name = null;
+    public VariableExpression(String name) {
+        this.name = name;
+    }
 
+    @Override
+    public void accept(FunctionVisitor vis) {
+        vis.visit(this);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+    private String name = null;
 }
