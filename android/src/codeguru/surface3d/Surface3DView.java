@@ -7,26 +7,22 @@
  */
 package codeguru.surface3d;
 
-import android.app.Activity;
+import android.content.Context;
 import android.opengl.GLSurfaceView;
-import android.os.Bundle;
 
 /**
  *
  * @author codeguru <codeguru@users.sourceforge.net>
  */
-public class Surface3DMain extends Activity {
-
-    private GLSurfaceView glView = null;
-
-    /**
-     * Called when the activity is first created.
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+public class Surface3DView extends GLSurfaceView {
+    
+    private static final int GL_VERSION = 2;
+    
+    public Surface3DView(Context context) {
+        super(context);
         
-        this.glView = new Surface3DView(this);
-        this.setContentView(glView);
+        this.setEGLContextClientVersion(GL_VERSION);
+        this.setRenderer(new Surface3DRenderer());
     }
+    
 }
