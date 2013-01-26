@@ -5,3 +5,4 @@ build
 /swing/dist/
 local.properties
 common/build.xml
+gen
