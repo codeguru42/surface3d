@@ -1,4 +1,5 @@
 bin
-/swing/nbproject/private/
-/swing/build/
+private
+build
 .metadata
+/swing/dist/
