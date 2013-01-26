@@ -1,0 +1,3 @@
+Surface3D is a multi-platform application which renders a three-dimensional
+surface based on a mathematical function of two variables. It is written in
+Java nad currently targets desktop and Android platforms. 
