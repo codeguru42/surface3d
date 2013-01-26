@@ -3,3 +3,5 @@ private
 build
 .metadata
 /swing/dist/
+local.properties
+common/build.xml
