@@ -1,14 +1,17 @@
 #include <GL/freeglut.h>
 
+#define MIN -1.0
+#define MAX  1.0
+
 void display() {
   glClear(GL_COLOR_BUFFER_BIT);
 
   glColor3f(1.0, 1.0, 1.0);
   glBegin(GL_POLYGON); {
-    glVertex3f(0.25, 0.25, 0.0);
-    glVertex3f(0.75, 0.25, 0.0);
-    glVertex3f(0.75, 0.75, 0.0);
-    glVertex3f(0.25, 0.75, 0.0);
+    glVertex3f( 0.5,  0.5, 0.0);
+    glVertex3f(-0.5,  0.5, 0.0);
+    glVertex3f(-0.5, -0.5, 0.0);
+    glVertex3f( 0.5, -0.5, 0.0);
   } glEnd();
 
   glFlush();
@@ -20,10 +23,15 @@ void init() {
 }
 
 void reshape(int w, int h) {
-  glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-  glMatrixMode(GL_PROJECTION);
+  glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+  glMatrixMode (GL_PROJECTION);
   glLoadIdentity();
-  glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+  if (w <= h)
+    glOrtho (MIN, MAX, MIN*(GLfloat)h/(GLfloat)w,
+      MAX*(GLfloat)h/(GLfloat)w, -10.0, 10.0);
+  else
+    glOrtho (MIN*(GLfloat)w/(GLfloat)h,
+      MAX*(GLfloat)w/(GLfloat)h, MIN, MAX, -10.0, 10.0);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 }
