@@ -1,9 +1,18 @@
 #include <GL/freeglut.h>
+#include <iostream>
 #include <cmath>
 
 #define MIN -25.0
 #define MAX  25.0
 #define DELTA 0.5
+#define DELTA_THETA 1.0
+
+int oldX = -1;
+int oldY = -1;
+
+GLfloat pitch = -70.0;
+GLfloat yaw   =   0.0;
+GLfloat roll  =  30.0;
 
 GLfloat lerp(GLfloat x,
              GLfloat xMin, GLfloat xMax,
@@ -17,6 +26,12 @@ GLfloat func(GLfloat x, GLfloat y) {
 }
 
 void display() {
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glRotated(pitch, 1.0, 0.0, 0.0);
+  glRotated(yaw  , 0.0, 0.0, 1.0);
+  glRotated(roll , 0.0, 0.0, 1.0);
+
   glClear(GL_COLOR_BUFFER_BIT);
 
   glColor3f(1.0, 1.0, 1.0);
@@ -39,7 +54,7 @@ void display() {
     glEnd();
   }
 
-  glFlush();
+  glutSwapBuffers();
 }
 
 void init() {
@@ -64,19 +79,53 @@ void reshape(int w, int h) {
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  glRotated(-70.0, 1.0, 0.0, 0.0);
-  glRotated( 30.0, 0.0, 0.0, 1.0);
+  glRotated(pitch, 1.0, 0.0, 0.0);
+  glRotated(yaw  , 0.0, 0.0, 1.0);
+  glRotated(roll , 0.0, 0.0, 1.0);
+}
+
+void mouse(int button, int state, int x, int y) {
+  switch(button) {
+    case GLUT_LEFT_BUTTON:
+      oldX = x;
+      oldY = y;
+      break;
+
+    default:
+      break;
+  }
+}
+
+void motion(int x, int y) {
+  if (x - oldX < 0) {
+    yaw -= DELTA_THETA;
+  } else if (x - oldX > 0) {
+    yaw += DELTA_THETA;
+  }
+
+  if (y - oldY < 0) {
+    pitch -= DELTA_THETA;
+  } else if (y - oldY > 0) {
+    pitch += DELTA_THETA;
+  }
+
+  oldX = x;
+  oldY = y;
+
+  glutPostRedisplay();
 }
 
 int main(int argc, char** argv) {
   glutInit(&argc, argv);
-  glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+  glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
   glutInitWindowSize(800, 800);
   glutInitWindowPosition(100, 100);
   glutCreateWindow("Surface3D");
   init();
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);
+  glutMouseFunc(mouse);
+  glutMotionFunc(motion);
   glutMainLoop();
 
   return 0;
