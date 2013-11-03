@@ -1,4 +1,3 @@
-#include <GL/gl.h>
 #include <GL/freeglut.h>
 
 void display() {
@@ -17,9 +16,16 @@ void display() {
 
 void init() {
   glClearColor(0.0, 0.0, 0.0, 0.0);
+  glShadeModel(GL_FLAT);
+}
+
+void reshape(int w, int h) {
+  glViewport(0, 0, (GLsizei)w, (GLsizei)h);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
 }
 
 int main(int argc, char** argv) {
@@ -30,6 +36,7 @@ int main(int argc, char** argv) {
   glutCreateWindow("hello");
   init();
   glutDisplayFunc(display);
+  glutReshapeFunc(reshape);
   glutMainLoop();
 
   return 0;
