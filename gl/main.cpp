@@ -3,6 +3,12 @@
 #define MIN -1.0
 #define MAX  1.0
 
+GLfloat lerp(GLfloat x,
+             GLfloat xMin, GLfloat xMax,
+             GLfloat yMin, GLfloat yMax) {
+  return x * (yMax - yMin) / (xMax - xMin);
+}
+
 void display() {
   glClear(GL_COLOR_BUFFER_BIT);
 
@@ -27,11 +33,11 @@ void reshape(int w, int h) {
   glMatrixMode (GL_PROJECTION);
   glLoadIdentity();
   if (w <= h)
-    glOrtho (MIN, MAX, MIN*(GLfloat)h/(GLfloat)w,
-      MAX*(GLfloat)h/(GLfloat)w, -10.0, 10.0);
+    glOrtho (MIN, MAX, lerp(MIN, 0, w, 0, h),
+      lerp(MAX, 0, w, 0, h), -10.0, 10.0);
   else
-    glOrtho (MIN*(GLfloat)w/(GLfloat)h,
-      MAX*(GLfloat)w/(GLfloat)h, MIN, MAX, -10.0, 10.0);
+    glOrtho (lerp(MIN, 0, h, 0, w),
+      lerp(MAX, 0, h, 0, w), MIN, MAX, -10.0, 10.0);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 }
