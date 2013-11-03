@@ -6,3 +6,5 @@ build
 local.properties
 common/build.xml
 gen
+*.o
+surface3d
