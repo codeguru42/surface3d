@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
   glutInitWindowSize(800, 800);
   glutInitWindowPosition(100, 100);
-  glutCreateWindow("hello");
+  glutCreateWindow("Surface3D");
   init();
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);
